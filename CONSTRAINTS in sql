@@ -1,0 +1,226 @@
+                           CONSTRAINTS
+                         ===============
+
+                        Data integrity(To maintaine proper data)or
+                           /      \    (To maintaine valid data)
+                          /        \
+                        SQL        T-SQL
+                    CONSTRAINTS   TRIGGERS    
+
+     Constraints are used to prevents or stops invalid data
+entry into our tables. Generally constraints are created on
+table columns.
+
+ SQL server having following types of constraints.
+These are
+
+1. Not null
+2. Unique
+3. Primary key
+4. Foreign key
+5. Check
+6. Default
+  
+  
+
+1)NOT NULL:- Not null constraint doesn't support table level.
+==========   This constraint doesn't accepts null values. 
+             But it will accepts duplicate values.
+
+
+2.UNIQUE:-This constraint is created on column level, table level.
+========  This constraint doesn't accepts duplicate values. 
+          But it will accepts one null value.
+
+3.Primary Key:- Primary key is Uniquely identifying a record in a 
+=============   table. There can be only one primary key in a table. 
+                primary key doesn't accepts duplicate, null values. 
+
+
+
+5.CHECK:-Check constraint is used to define logical conditions
+=======  according to client business rules.
+
+
+
+
+------------------------------------------------------------------------------------------------------
+1.Create a student123 table with constraints based on the following
+  conditions.
+
+---->after creating the table insert valid, invalid records 
+     and observe the outputs.
+
+SID          does not accept nulls values and duplicate values
+
+SNAME        does not accept nulls
+
+MARKS        Marks must be between 0 and 100
+
+MAILID       Must be unique
+
+
+
+ans:
+create table student123
+(studentid int Primary key,
+studentname varchar(20) not null,
+marks int check(marks between 0 and 100),
+mailid varchar(20)UNIQUE
+)
+------------------------------------------------------------------------------------------------------
+2.Create a emp3 table with constraints based on the following
+  conditions.
+
+---->after creating the table insert valid, invalid records 
+     and observe the outputs.
+
+
+USERID       does not accept null values and duplicate values
+
+USERNAME     does not accept null values and duplicate values
+
+PWD          Password minimum 8 characters
+
+ans:create table emp3(
+userid int primary key,
+username varchar(20) not null unique,
+pwd varchar check(len(pwd)>=8)
+)
+  
+------------------------------------------------------------------------------------------------------
+3.Create the emp4 table with constraints based on the following
+  conditions.
+
+--->after creating the table insert valid, invalid records 
+     and observe the outputs.
+
+
+EMPNO      should not be NULL and should not allow duplicate values
+
+ENAME      should not be NULL
+
+GENDER     Must be M or F
+
+SAL        Minimum 5000 (means 5000 or above it will accept)
+
+ans:create table emp4 (
+empno int primary key,
+ename varchar(50) not null,
+gender varchar(10) check(Gender ='M' or Gender='F'),
+sal money check(sal>=5000)
+)
+
+------------------------------------------------------------------------------------------------------
+4.Create the ACCOUNTS table with constraints based on the following
+  conditions.
+
+--->after creating the table insert valid, invalid records 
+     and observe the outputs.
+
+
+ACCNO       should not be NULL and should not allow duplicate values
+
+ACCTYPE     Must be 'S' OR 'C'
+
+BAL         Must be minimum 1000
+
+ans:create table accounts(
+accno varchar(50) primary key,
+acctype varchar(60) check(acctype='S' or acctype='C'),
+Bal money check(bal>=1000)
+)
+
+------------------------------------------------------------------------------------------------------
+5.Create a table named test123 using table level constraints with the following conditions
+
+SNO        should not accept NULL values and duplicate values
+
+SNAME      should contain only capital letters
+
+SAL        more than 9000
+
+
+ans:
+create table test123(
+Sno int primary key,
+sname varchar(50) check(sname=upper(sname)),
+sal money check(sal>9000)
+
+)
+---------------------------------------------------------------------------------------------------------------
+Default: in all relational databases if we want to provide
+=======  default values into a table column then we are using
+         default clause.
+
+• It is used to apply default value to table column.
+
+• If we pass the value, it takes that value. if we don't pass the value
+  it takes default value.
+
+
+syntax:-
+======
+columnname datatype(size) default defaultvalue
+
+EG:-
+===
+
+SQL>create table test4(name varchar2(10), sal number(10) default 3000);
+
+SQL>insert into test4(name)values('SURYA');---->NULL values overrides the default values,then we must                                                           use Skipping columns method to apply default values.
+
+SQL>insert into test4 values('ANUSHKA',5000);
+
+SQL>select * from test4;
+   
+    NAME         SAL
+  -------     ---------
+  SURYA          3000
+  ANUSHKA        5000
+
+------------------------------------------------------------------------------------------------------
+6.Create a student10 table with 4 columns and apply following constraints.
+ans:
+
+
+
+--->after creating the table insert the records and observe
+    the outputs.
+
+SID           should not accept duplicate values and null values
+SNAME         should not accept null values
+INAME         by default INAME is 'NARESH IT'
+CITY          by default CITY is 'AMMERPET' 
+FEE           by default FEE is 30000
+
+ans:
+
+   create table student10(
+sid int primary key,
+sname varchar(50) not null,
+Iname varchar(20) default 'Naresh it',
+City varchar(20) default 'Ammerpet',
+Fees money default 30000
+)
+
+7.Create table PROJECT table with constraints based on the following
+  conditions.
+
+--->after creating the table insert valid, invalid records 
+     and observe the outputs.
+
+PID              should not accept NULL values & duplicate values
+
+PNAME            should not accept nulls
+
+START_DATE
+
+END_DATE
+
+COST             Must be atleast 20000
+
+STATUS           Must be active,completed or on hold     
+
+
+
