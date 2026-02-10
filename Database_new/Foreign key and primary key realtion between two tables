@@ -1,0 +1,251 @@
+                            CONSTRAINTS TASK
+                           =====================
+
+4.Foreign Key:-in all relational databases If we want to establishes relationship
+=============  between tables then we are using referential integrity
+               constraint Foreign Key.
+
+
+    Generally One table foreign key must belongs to another table
+primary key. And also these primary key, foreign key columns must
+belong to same datatype.
+
+
+   Always foreign key values based on related primary key values only.
+Generally primary key doesn't accepts duplicate, null values where as
+foreign key accepts duplicate, null values.
+
+
+Column level:-(References)
+=============
+Syntax:-
+=======
+create table tablename(col1 datatype(size) references mastertablename(primarycolumnname).....);
+
+EX:-
+===
+
+SQL> create table t5(sno number(10) primary key, name varchar2(10));//master table
+
+    Table created
+
+SQL> create table t7(sno number(10) references t5); //child table
+                                                |--->mastertablename
+                    Or
+
+SQL> create table g4(x number((10) references t5(sno));
+                                               |--->mastertablename
+
+
+Table Level: (Foreign key, references)
+===========
+Syntax:-
+========
+create table tablename(col1 datatype(size),col2 datatype(size),.........., foreign
+                       key(col1,col2,.......) references mastertablename(primarykeycolnames));
+
+-----------------------------------------------------------------------------------------------------
+
+1.Establish the relationship between COURSES123 and STUDENTS123 table by using
+  Primary key, Foreign key with the following Rules
+
+
+--->after creating the tables insert the records and observe
+    the outputs.
+
+COURSES123 Table Rules:-
+
+1.cid does not accept null values and duplicate values
+
+2.cname does not accept null values
+
+
+STUDENTS123 Table Rules:-
+
+1.sid doesn't accept null values and duplicate values
+
+2.sname doesn't accept nulls
+
+3.cid should present in courses table cid column
+
+ans:
+create table Course123(cid int primary  KEY,
+cname varchar(50) not null)
+
+create table student1234(
+sid int primary key,
+sname varchar(50) not null,
+cid int references course123(cid)) 
+
+
+
+
+2.Establish the relationship between DOCTORS and PATIENTS table by using
+  Primary key, Foreign key
+
+
+DOCTORS                                        PATIENTS
+=======                                        ==========
+    PK                                                                FK
+ DOCTORID     DNAME    SPECIALTY                PATIENTID    PNAME    DOCTORID 
+
+ Ans:
+      create table Doctors
+(did int primary key,
+dname varchar(50) not null,
+speciality varchar(50))
+
+
+create table patient(
+pid int primary key,
+pname varchar(50) not null,
+doctorid int references Doctors(did)
+)
+
+      
+
+
+3.Create following ACCOUNTS, TRANSACTIONS tables with given rules ?
+
+Rules :- 
+
+1. ACCNO should not be duplicate and null
+2. ACTYPE  should be ‘S’ OR ‘C’
+3. Bal must be min 1000
+
+
+Rules :- 
+
+Ans:create table Accounts1(
+accno int primary key,
+acctype varchar(5) check(acctype like 's' or acctype like'c'),
+balance money check(balance>100)
+)
+
+create table Transactions(
+trid int primary key,
+ttype varchar(5) check(ttype like 'W' or ttype like 'D'),
+tdate date default getdate(),
+Amt money check(amt%100=0),
+Accno int references Accounts1(accno)
+)
+
+
+
+
+1. TRID should not be duplicate and null
+2. TTYPE  must be 'W' OR 'D'
+3. By default TDATE is today’s date
+4. AMT must be multiple of 100
+5. ACCNO should present in accounts table ACCNO colum
+
+
+
+4.Create the emp5 table with following columns. and you only 
+  think which constraint is suitable at the time of table creation 
+  it self and use all constraints(SQL SERVER MOCK INTERVIEW QUESTION)
+
+NOTE:-for this question just create the table with constraints
+       is enough.
+
+EMPNO     ENAME     SAL     MGRNO     AGE     ADDRESS    PHONO
+Ans:
+create table emp5(
+Empno int primary key,
+Ename varchar(50) not null,
+sal money check (sal>1000),
+Mgrno int not null,
+age int not null,
+address varchar(100) not null,
+Phone varchar(15) not null unique check(len(phone)=10)
+)
+
+    
+
+
+
+5. Create following CUSTOMER123,ORDERS123 tables with given rules ?
+
+Rules:-
+
+1. CUSTID must be unique and not null.
+
+2. CNAME must be not null.
+
+3. CITY must be either GUNTUR,VJD, or HYD
+
+ans:create table costumer321
+(
+custid int primary key,
+cname varchar(20),
+city varchar(50) check(city like 'VJD' or city like 'HYD' or city like 'guntur')
+)
+
+
+
+Rules:-
+
+1. ORDERID must be unique and not null.
+
+2. ODATE must be default to the current date.
+
+3. AMOUNT must be greater than 0.
+
+4. CUSTID must be present in the CUSTOMER table.
+
+Ans:create table order123(
+orderid int primary key,
+ODATE date default getdate(),
+amount money check(amount>0),
+Custid int references costumer321(Custid)
+)
+
+
+
+
+
+
+
+
+
+
+ON DELETE CASCADE:-On delete cascade clause used along with foreign key
+                   constraint. Whenever child table having on delete
+                   cascade clause. If we are deleting master table
+                   records from master table then automatically
+                   deleted from child.
+
+
+
+6.Create mas table, child table and establish relation b/w tables .
+
+--->after creating the tables insert the records. delete the mas table
+    records and observe the outputs in child table.
+
+mas
+---
+sno ---->primary key 
+
+child
+----
+sno ---->foreign key along with on delete cascade 
+                         
+
+Ans:
+create table Mas(
+sno int primary key
+)
+
+create table child(
+sno int references Mas(sno)
+)
+
+
+    
+
+
+
+
+
+
+
