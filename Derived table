@@ -1,0 +1,229 @@
+                  DERIVED TABLE & ANALYTICAL FUNCTIONS  
+                 ======================================
+
+
+Derived table:-in place of tablename we are writing subquery
+=============    is called Derived table.
+
+.Derived tables must have an alias name in SQL Server.
+
+
+syntax:-
+=======
+ select * from (subquery);
+
+
+    Generally in every relational databases we are not allowed 
+to use order by clause in child query.to overcome this problem 
+if we want to execute order by clause prior to any other clause
+then those type of queries we are putting in a derived table.
+
+
+Note:-in where clause we are not allowed to use column aliasname.
+===== then those type of queries we are putting in inline view.
+      then internally column aliasname behaves like a exact 
+      table column. 
+
+
+
+
+1.Write a query to display the employees who are getting more
+  than 30000 annsal from emp table?
+ans:select * from (select ename,sal,sal* 12 as annualsal from emp )as e
+where annualsal>30000 
+
+
+     
+
+               -----------------------------
+select * from( |  ename  |  sal |  annsal  |)where annsal>300000;
+               -----------------------------
+               |         |      |          |
+               -----------------------------
+
+SELECT * FROM(SELECT ENAME,SAL,SAL*12 AS ANNSAL FROM EMP)E
+WHERE ANNSAL>30000;
+
+
+       ENAME          SAL        ANNSAL
+    ----------    ----------   ----------
+      JONES          2975        35700
+      BLAKE          2850        34200
+      SCOTT          3000        36000
+      KING           5000        60000
+      FORD           3000        36000
+
+
+------------------------------------------------------------------------------------------------------
+                       Analytical functions
+                     =======================
+ *
+***What are Analytical functions or Window functions?
+ *
+
+SQL SERVER having following analytical functions. These are
+
+   1.row_number()
+
+   2.rank()
+ *
+***3.dense_rank()
+ *
+
+
+syntax:-
+=======
+
+Analyticalfunctionname()over(partition by columnname order by
+                              columnname[asc/desc])
+
+   in these 3 analytical functions partition by clause is optional 
+order by clause is mandatory.
+
+   These 3 analytical functions automatically assigns ranks either
+group wise or rows wise in a table.
+
+
+
+ *
+*** What are differences between row_number(),rank() and dense_rank()[V.V.I.M.P]
+ *
+
+    Row_number() analytical function automatically assigns different rank numbers
+when values are same whereas rank(), dense_rank() functions automatically assigns
+same rank numbers when values are same and also rank() skips next consecutive rank numbers
+where as dense_rank() does not skips next consecutive rank numbers
+
+   
+EX:-
+=====
+ROW_NUMBER():-
+=============
+
+             ENAME         SAL         R
+            --------     -------     -----
+              SCOTT        6000        1
+              FORD         6000        2
+              JONES        5000        3
+              ALLEN        3000        4
+              SMITH        3000        5
+              MILLER       3000        6
+              MARTIN       2000        7
+              ADAMS        1000        8
+
+
+
+RANK():-
+========
+
+              ENAME         SAL         R
+            --------     -------     -----
+              SCOTT        6000        1
+              FORD         6000        1
+              JONES        5000        3
+              ALLEN        3000        4
+              SMITH        3000        4
+              MILLER       3000        4
+              MARTIN       2000        7
+              ADAMS        1000        8
+
+
+
+DENSE_RANK():-
+=============
+ 
+             ENAME         SAL         R
+            --------     -------     -----
+              SCOTT        6000        1
+              FORD         6000        1
+              JONES        5000        2
+              ALLEN        3000        3
+              SMITH        3000        3
+              MILLER       3000        3
+              MARTIN       2000        4
+              ADAMS        1000        5
+
+
+------------------------------------------------------------------------------------------------------
+ *
+*1* Write a query to display 2nd highest salary employee from emp table
+ *  by using analytical function ?[V.V.I.M.P]
+
+
+SELECT * FROM(SELECT ENAME,SAL,DENSE_RANK()OVER(ORDER BY SAL DESC)R FROM EMP)E
+WHERE R=2;
+
+    ENAME          SAL          R
+  ----------   ----------   ----------
+    SCOTT         3000          2
+    FORD          3000          2
+
+
+
+ 
+2.Write a query to display 3rd highest salary employee in each department
+  from emp table by using analytical function ?
+
+
+ans:select * from (select Ename,sal,DEPTNO,DENSE_RANK()
+over(partition by deptno order by sal desc) e from emp)r
+where e=3
+   
+
+
+
+SELECT * FROM(SELECT ENAME,SAL,DEPTNO,DENSE_RANK()OVER(PARTITION BY DEPTNO ORDER BY SAL DESC)R
+FROM EMP)E WHERE R=3;
+
+
+     ENAME          SAL        DEPTNO         R
+  ----------    ----------   ----------   ---------
+    MILLER         1300          10           3
+    ADAMS          1100          20           3
+    TURNER         1500          30           3
+
+
+
+
+3.Write a query to display 5th highest salary employee from emp table 
+  by using analytical function?
+
+ans:select * from(select ename,sal,deptno,DENSE_RANK()
+over(order by sal desc) e from emp) r
+where e=5
+
+
+
+
+
+
+
+
+SELECT * FROM(SELECT ENAME,SAL,DENSE_RANK()OVER(ORDER BY SAL DESC)R FROM EMP)E
+WHERE R=5;
+
+    ENAME         SAL           R
+  ----------   ----------   ----------
+    CLARK         2450          5
+
+
+
+4.Write a query to display the top 3 highest salary employees from the EMP table
+  using an analytical function.[V.V.I.M.P]
+ans:  
+    
+
+
+SELECT * FROM (SELECT ENAME,SAL,DENSE_RANK()OVER(ORDER BY SAL DESC)R FROM EMP)E
+WHERE R<=3;
+
+
+      ENAME         SAL          R
+   ----------   ----------   ---------
+     KING          5000          1
+     SCOTT         3000          2
+     FORD          3000          2
+     JONES         2975          3
+
+
+
