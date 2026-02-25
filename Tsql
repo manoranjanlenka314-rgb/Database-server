@@ -1,0 +1,151 @@
+                                       T-SQL
+                                   ============
+
+1.Declaring a Variable
+======================
+
+In T-SQL, variables are declared using the DECLARE statement 
+
+syntax:-
+======
+@variablename datatype(size)
+
+ @a int
+ @b varchar(10)
+ans:
+
+
+2.Storing a Value into Variable
+================================
+
+In T-SQL, you assign a value to a variable using the SET statement.
+
+syntax:-
+======
+
+set @variablename = value;
+
+
+EX:-
+==
+declare 
+@a int
+set @a=80
+
+
+
+3.Display a Message (or) Variable Value
+=======================================
+
+ To display messages or variable values, use the PRINT statement.
+
+syntax:-
+======
+PRINT 'message'
+PRINT @variablename
+
+Note: When printing numeric variables , convert them to string 
+      using CAST or CONVERT.
+
+EX:-
+==
+declare
+@a INT
+set @a = 80
+print 'Welcome'
+print 'Value of a is: ' + CAST(@a AS VARCHAR)
+
+
+
+SELECT STATEMENT SYNTAX :-
+=======================
+SELECT @var1 = col1 , @var2 = col2 , .......
+FROM tablename
+WHERE condition
+
+
+------------------------------------------------------------------------------------------------------
+
+1.Write a T-SQL program to print a message 'WELCOME TO T-SQL CLASSES
+  FOR MY DEAR WONDERFULL BATCHES .NET 27 & 28 ' on screen?
+ans:
+     declare @message varchar(50)
+set @message='Welcome to NIT'
+print @message
+
+
+2.Write a T-SQL program to add 2 numbers
+ans: 
+declare @a int;
+declare @b int;
+set @a=10
+set @b=20
+print 'Value of a&b:'+Cast (@a+@b as varchar)
+    
+
+
+3.Write a T-SQL program for user entered empno then display name
+  of the employee and his salary from emp table?
+
+ans: 
+   
+     
+
+
+
+4.Write a T-SQL program to calculate the experience of the user
+  enter empno
+
+input        :7902
+experience is:44 YEARS
+ans:
+   Ans:
+
+
+
+5.Write a T-SQL program to increase salary of the given empno
+  with given amount.after increasing the sal display the salary
+  of the employee?
+
+empno:7499
+amount:2000
+salary increased(msg i want to display)
+salary is:3600
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+
+
+1.Write an SQL query to display:[acenture interview question]
+
+The department name(use alias 'DeptNAME'),the count of doctors(use alias 'TotalDoctors'),
+and the total salary (use alias 'TotalSalary') for each department.
+Sort the results by the total salary in descending order
+
+Your output should have 3 columns as given below
+
+DEPTNAME     TOTALDOCTORS      TOTALSALARY
+
+
+SCHEMA:-
+======
+        DOCTORS                    DEPARTMENTS
+      -----------                ---------------
+      DOCTORID(PK)               DEPARTMENTID(PK) 
+      FIRSTNAME                  DEPARTMENTNAME
+      LASTNAME                   LOCATION
+      GENDER                     DESCRIPTION
+      DATEOFBIRTH                
+      PHONE
+      EMAIL
+      ADDRESS
+      DEPARTMENTID(FK)
+      EMPLOYMENTDATE
+      SALARY
+
+
+
+
