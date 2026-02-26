@@ -1,0 +1,208 @@
+if                                T-SQL
+                               =======
+CONDITIONAL STATEMENTS & LOOPS:-
+==============================
+
+
+1.Write a T-SQL program eligible for voting system based on age
+
+if the age is>=18 then display a message : You are eligible for voting.
+
+if age is<18 then display a message      : You are not eligible for voting.
+                                           Better luck next time.
+
+ans:
+     
+declare @age int
+set @age=17
+if @age>=18
+print ('You are eligible for voting')
+else 
+print('You are not eligible for voting')
+
+-----------------------------------------------------------------------------------------------------
+
+2.Write a T-SQL program that accepts a student ID, fetches the marks from 
+  a student111 table, display the grade based on the following conditions
+
+
+• if Marks >= 90 then display a message ---> Grade A
+
+• if Marks >= 80 then display a message ---> Grade B
+
+• if Marks >= 70 then display a message ---> Grade C
+
+• if Marks >= 35 then display a message ---> Grade D
+
+• Marks < 35 --->then display a message ---> FAIL
+ans:
+    
+    
+
+
+CREATE TABLE STUDENT111
+(
+SID INT
+SNAME VARCHAR(10),
+MARKS INT
+)
+
+INSERT INTO STUDENT111 VALUES(1,'SURYA',88)
+INSERT INTO STUDENT111 VALUES(2,'KAVYA',74)
+INSERT INTO STUDENT111 VALUES(3,'ANUSHKA',92)
+INSERT INTO STUDENT111 VALUES(4,'PREETHI',12)
+INSERT INTO STUDENT111 VALUES(5,'NITHISH',30)
+
+ 
+
+SQL>select * from student111;
+
+      SID      	NAME	  MARKS
+     -----    --------   -------
+      1	       SURYA	   88
+      2	       KAVYA	   74
+      3	       ANUSHKA 	   92
+      4	       PREETHI	   12
+      5	       NITHISH	   30
+
+ans:
+      DECLARE @StudentID INT = 4;   -- change this to test
+DECLARE @Marks INT;
+Declare @name varchar(20)
+-- Fetch marks
+SELECT  @Marks=MARKS,
+@name=SNAME
+FROM STUDENT111 
+WHERE SID = @StudentID;
+
+-- Check conditions with IF / ELSE IF
+IF @Marks >= 90
+    PRINT  cast(@name as varchar)+ ' Grade A';
+ELSE IF @Marks >= 80
+    PRINT  cast(@name as varchar)+  ' Grade B';
+ELSE IF @Marks >= 70
+    PRINT cast(@name as varchar)  +' Grade C';
+ELSE IF @Marks >= 35
+    PRINT cast(@name as varchar)+ ' Grade D';
+ELSE
+    PRINT cast(@name as varchar)+' FAIL';
+
+
+------------------------------------------------------------------------------------------------------
+3.Write a T-SQL program to calculate total, average and result.
+
+
+   STUDENT222
+
+  SID        SNAME        M1      M2      M3
+-------     --------     ----    ----    -----
+  1001      SURYA          80      60      80
+  1002      ANUSHKA        50      30      60
+
+
+
+  RESULT
+
+   SID      TOTAL       AVG       RESULT
+ ------    -------     ------     --------
+
+
+• Accept a student id as input
+
+• Calculate the total marks,average,and result
+   
+   • if the student marks 35 or more in all subjects,result='PASS'
+   • if the student marks less than 35 in any subject,result='FAIL'
+
+• Insert the calculated values into the ressult table
+
+
+CREATE TABLE STUDENT222 (
+    SID INT ,
+    SNAME VARCHAR(10),
+    M1 INT,
+    M2 INT,
+    M3 INT
+)
+
+INSERT INTO STUDENT222 VALUES (1001, 'SURYA', 80, 60, 80)
+INSERT INTO STUDENT222 VALUES (1002, 'ANUSHKA', 50, 30, 60)
+
+CREATE TABLE RESULT (
+    SID INT ,
+    TOTAL INT,
+    AVG DECIMAL(10,2),
+    RESULT VARCHAR(10)
+)
+
+ans: 
+    
+  
+-----------------------------------------------------------------------------------------------------
+
+
+
+1.Write an SQL query to find all users from Master_Users who never 
+  raised a help request-i.e their ID does not appear in the
+  Help_Requests table[Accenture Interview Question]
+
+
+SQL> SELECT * FROM MASTER_USERS;
+
+
+        ID        FIRST_NAME      LAST_NAME
+     --------    ------------    -----------
+         1          Ravi            Kumar
+         2          Sneha           Latha
+         3          Arjun           Das
+         4          Priya           Nair
+
+
+
+SQL> SELECT * FROM HELP_REQUESTS;
+
+
+    REQUEST_ID        USER_ID             ISSUE
+    ----------      ----------      ------------------
+         1              2              Login Issue
+         2              4              Payment Failed
+
+
+
+EXPECTED OUTPUT:-
+===============
+
+       ID           FIRST_NAME        LAST_NAME
+    --------      -------------     -------------
+        1             Ravi              Kumar
+        3             Arjun             Das
+
+
+------------------------------------------------------------------------------------------------------
+CREATE TABLE MASTER_USERS
+(
+ID NUMBER(2),
+FIRST_NAME VARCHAR(10),
+LAST_NAME VARCHAR(10)
+);
+
+INSERT INTO MASTER_USERS VALUES(1,'Ravi','Kumar');
+INSERT INTO MASTER_USERS VALUES(2,'Sneha','Latha');
+INSERT INTO MASTER_USERS VALUES(3,'Arjun','Das');
+INSERT INTO MASTER_USERS VALUES(4,'Priya','Nair');
+
+
+
+CREATE TABLE HELP_REQUESTS
+(
+REQUEST_ID INT,
+USER_ID INT,
+ISSUE VARCHAR(20)
+);
+
+INSERT INTO HELP_REQUESTS VALUES(1,2,'Login Issue');     
+INSERT INTO HELP_REQUESTS VALUES(2,4,'Payment Failed');      
+
+
+
+
