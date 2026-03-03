@@ -1,0 +1,83 @@
+                         SUB PROGRAMS
+                      ===================
+  
+                         SUB PROGRAMS
+                            /     \
+                           /       \
+                     procedure     function
+                  (May or may not  (Must return value)
+                   return values)
+       
+                           PROCEDURES
+                         =============
+
+   Procedure is named T-SQL block which is used to solve particular
+task and also procedure may or may not return values
+
+   in SQLSERVER whenever we are using create or alter keyword infront
+of the procedure then those procedures are internally automatically
+permanently stored in SQLSERVER database. That's why those procedures
+are also called as stored procedures.
+
+
+ 
+
+
+1.input:-In SQL SERVER by default procedure parameter is input.
+=======  input parameter is used to pass the values to procedure body.
+         
+
+
+
+ *
+*2* Output:- output parameter is used to return values from the procedure.
+ *  =======  output parameter internally behaves like a variable in procedure
+             body.here explicitly we must specify output keyword.
+
+------------------------------------------------------------------------------------------------------
+1.Write a T-SQL stored procedure which is used to insert a record into dept table 
+  by using INPUT parameter
+
+
+------------------------------------------------------------------------------------------------------
+2.Create a procedure to perform deposit operation on following BANK table
+
+Accepts two input parameters:
+
+   •@ACCNO  — 1001
+
+   •@AMOUNT  — 2000
+
+• After depositing amount then print one message transaction is successful
+
+select * from bank
+
+ACCNO          NAME          BAL
+------        -------     ---------
+1001          ANUSHKA        3000
+1002          SURYA          4000
+
+
+
+------------------------------------------------------------------------------------------------------
+3.Write a T-SQL stored procedure for passing empno as a INPUT parameter then display name
+  of the employee and his salary as OUTPUT parameters from emp table?
+
+
+------------------------------------------------------------------------------------------------------
+4.Write a T-SQL stored procedure for passing deptno is input parameter then return dname,location 
+  from dept table by using output parameter?
+
+
+-----------------------------------------------------------------------------------------------------
+5.Write T-SQL stored procedure for withdraw
+
+ACCNO          NAME          BAL
+------        -------     ---------
+1001          ANUSHKA        3000
+1002          SURYA          4000
+
+If the entered amount is more than the available balance ---->insufficient founds
+
+If the entered amount is less than the available balance ---->update his bal 
+
