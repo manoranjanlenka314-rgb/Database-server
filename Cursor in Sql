@@ -1,0 +1,104 @@
+                             CURSOR
+                            ========
+
+      Cursor is a private sql memory area which is used to process
+multiple records and also this is an record by record process.
+
+
+  *         /To process multiple records.
+ *** CURSOR
+  *         \record by record process.
+
+
+    
+
+    cursor having following 5 step proces. 
+These are.
+
+1)declare
+2)open
+3)fetch
+4)close
+5)deallocate
+
+1)Declare:-
+==========
+   in declare section of the T-SQL block we are declaring
+the cursor by using following syntax.
+
+syntax:-
+=======
+declare cursorname cursor for select * from tablename
+where condition;
+
+ex:-
+===
+declare c1 cursor for select * from emp
+    where job='CLERK';
+
+2)open:-whenever we are opening the cursor then only SQL server
+======  retrieve data from table into cursor memory area because in all
+        relational databases whenever we are opening the cursor then
+        only cursor select statement are executed.
+
+syntax:-
+======
+open cursorname;
+
+
+NOTE:-When a cursor is opened, the cursor pointer is positioned 
+====  before the first record in the cursor’s memory area.
+
+
+3)fetch:-(fetching data from cursor memory area)
+================================================
+  By using fetch statement we are fetching data from cursor memory
+area into T-SQL variables
+
+syntax:-
+=======
+fetch next from cursorname into variablename1,variablename2;
+
+
+4)close:-
+=========
+
+syntax:-
+=======
+close cursorname
+
+5)deallocating cursor:-
+=====================
+
+syntax:-
+======
+deallocate cursorname
+ 
+
+------------------------------------------------------------------------------------------------------
+1.Write a T-SQL cursor program which is used to display all employee names 
+  and their salaries from emp table ?
+
+@@fetch_status:-It is a system variable that indicates whether the fetch 
+==============  operation was successful or not.
+
+
+     0 --->fetch was successful
+    -1 --->fetch was unsuccessful 
+
+------------------------------------------------------------------------------------------------------
+2.Write a T-SQL cursor program which is used to display total salary 
+        from emp table without using sum() function ?
+
+
+
+------------------------------------------------------------------------------------------------------
+3.Write a T-SQL cursor program to find the maximum salary without using
+  max function ?
+
+
+------------------------------------------------------------------------------------------------------
+
+
+
+
