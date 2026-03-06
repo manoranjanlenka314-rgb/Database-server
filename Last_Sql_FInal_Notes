@@ -1,0 +1,40 @@
+SQL Server Interview Questions and Answers
+1. What is SQL Server?
+
+SQL Server is a relational database management system (RDBMS) developed by Microsoft. It is used to store, manage, and retrieve data for applications. SQL Server uses Structured Query Language (SQL) to perform operations like inserting, updating, deleting, and retrieving data. It supports features like transactions, security, indexing, and backup. SQL Server is widely used in enterprise applications, especially with .NET applications, because it integrates well with Microsoft technologies.
+
+2. What is a Database?
+
+A database is an organized collection of structured data stored electronically in a computer system. It allows users to store, manage, and retrieve data efficiently. In SQL Server, data is stored in tables, which contain rows and columns. Databases help maintain data consistency, reduce redundancy, and support data sharing among multiple users. SQL Server databases also provide features like security, backup, recovery, and transactions to ensure data reliability and integrity.
+
+3. What is a Table in SQL Server?
+
+A table is a database object used to store data in a structured format. It consists of rows and columns, where each row represents a record and each column represents a field or attribute of that record. For example, an Employee table may contain columns like EmployeeID, Name, Salary, and Department. Tables are the main components of relational databases, and they allow data to be stored and retrieved efficiently using SQL queries.
+
+4. What is a Primary Key?
+
+A Primary Key is a column or a set of columns used to uniquely identify each record in a table. It ensures that no duplicate or null values exist in that column. For example, an EmployeeID column can be a primary key because each employee must have a unique ID. Primary keys help maintain data integrity and establish relationships between tables. In SQL Server, only one primary key constraint can be defined for each table.
+
+5. What is a Foreign Key?
+
+A Foreign Key is a column or a set of columns in one table that refers to the Primary Key of another table. It is used to create relationships between tables and maintain referential integrity. For example, a DepartmentID column in an Employee table may reference the DepartmentID in a Department table. This ensures that the department value entered in the Employee table must already exist in the Department table.
+
+6. What is a View?
+
+A View is a virtual table in SQL Server that is created using a SELECT query. It does not store data itself but displays data from one or more tables. Views are used to simplify complex queries, improve security, and present specific data to users. For example, a view can show only employee names and salaries from a large employee table. This helps users access necessary data without exposing the entire table structure.
+
+7. What is a Stored Procedure?
+
+A Stored Procedure is a precompiled collection of SQL statements stored in the database. It can be executed whenever needed to perform specific tasks. Stored procedures improve performance because the SQL code is compiled only once and reused multiple times. They also enhance security by allowing controlled access to data. For example, a stored procedure can be created to insert employee details into a table or retrieve records based on conditions.
+
+8. What is an Index in SQL Server?
+
+An Index is a database object used to improve the speed of data retrieval operations. It works like the index of a book, allowing SQL Server to find data quickly without scanning the entire table. There are two main types: Clustered Index and Non-Clustered Index. While indexes improve query performance, they can slow down insert, update, and delete operations because the index must also be updated.
+
+9. What is a Join in SQL?
+
+A Join is used to combine data from two or more tables based on a related column between them. Joins help retrieve meaningful data stored across multiple tables. Common types of joins include Inner Join, Left Join, Right Join, and Full Join. For example, joining an Employee table with a Department table can show the employee name along with their department information.
+
+10. What is Normalization?
+
+Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. It involves dividing large tables into smaller related tables and defining relationships between them. Normalization follows rules called normal forms, such as 1NF, 2NF, and 3NF. The main goal is to eliminate duplicate data, ensure logical data storage, and make database maintenance easier and more efficient.
